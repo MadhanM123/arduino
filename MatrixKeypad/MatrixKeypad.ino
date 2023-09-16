@@ -10,13 +10,17 @@ char KEYS[rows][cols] = {
   {'*', '0', '#', 'D'}
 };
 
+#define RED 10
+
 byte ROW_PINS[rows] = {9, 8, 7, 6};
 byte COL_PINS[cols] = {5, 4, 3, 2};
+
 
 Keypad myPad = Keypad(makeKeymap(KEYS), ROW_PINS, COL_PINS, rows, cols);
 
 void setup() {
   Serial.begin(9600);
+  pinMode(RED, OUTPUT);
 }
 
 void loop() {
@@ -26,6 +30,10 @@ void loop() {
     Serial.println(pressed);
     if(pressed == '5'){
       Serial.println("Wow");
+      digitalWrite(RED, HIGH);
+    }
+    else{
+      digitalWrite(RED, LOW);
     }
   }
 }
